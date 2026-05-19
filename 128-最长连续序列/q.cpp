@@ -1,5 +1,5 @@
-#include<string>
 #include<unordered_map>
+#include<unordered_set>
 #include<vector>
 #include<iostream>
 using namespace std;
@@ -9,20 +9,20 @@ class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
         long base = 1000000000;
-        long min_num = base, max_num = -base;
-        unordered_map<long, int> num_map; 
+        unordered_map<long, int> num_map;
+        unordered_set<long> num_set;
         for (int i=0;i<nums.size();i++) {
-            if (min_num > nums[i]) {min_num = nums[i];}
-            if (max_num < nums[i]) {max_num = nums[i];}
-            num_map[nums[i]] = 1;
+            // num_map[nums[i]] = 1;
+            num_set.insert(nums[i]);
         }
 
         long max_length = 0;
         for (int i=0;i<nums.size();i++) {
-            if (num_map[nums[i]-1]) continue;
+            // if (num_map[nums[i]-1]) continue;
+            if (num_set.find(nums[i]-1)!=num_set.end()) continue;
             
             long y = nums[i]+1;
-            while (num_map[y]) y += 1;
+            while (num_set.find(y)!=num_set.end()) y += 1;
             long now_length = y-nums[i];
 
             if (now_length > max_length) max_length = now_length;
