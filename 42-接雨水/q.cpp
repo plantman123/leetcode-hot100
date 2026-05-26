@@ -29,7 +29,7 @@ public:
                     int j, shortage=0;
                     for (j=i+1;j<heights.size();j++) {
                         if (heights[j] != heights[j-1]) {
-                            if (heights[j] < heights[j-1]) {i=j;}
+                            if (heights[j] < heights[j-1]) {i=j-1;}
                             else shortage = min2(heights[i-1], heights[j]);
                             break;
                         }
