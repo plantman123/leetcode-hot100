@@ -31,7 +31,7 @@ public:
                 int suit = 1;
                 for (int j=i;j<i+p.length();j++) {
                     tmpmap[s[j]] -= 1;
-                    if (charmap[s[j]]) {
+                    if (charmap[s[j]] == 0) {
                         i=j;
                         suit = 0;
                         break;
